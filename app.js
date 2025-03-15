@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 mongoose.connect(
-	'mongodb+srv://tanim27:<db_password>@backend.hwt3c.mongodb.net/todolistDB',
+	'mongodb+srv://tanim27:tanim27@backend.hwt3c.mongodb.net/todolistDB',
 )
 
 const itemSchema = new mongoose.Schema({ name: String })
