@@ -11,9 +11,14 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
-mongoose.connect(
-	'mongodb+srv://tanim27:tanim27@backend.hwt3c.mongodb.net/todolistDB',
-)
+const mongoURI =
+	process.env.MONGO_URI ||
+	'mongodb+srv://tanim27:tanim27@backend.hwt3c.mongodb.net/todolistDB'
+
+mongoose
+	.connect(mongoURI, { tls: true })
+	.then(() => console.log('Connected to MongoDB'))
+	.catch((err) => console.error('MongoDB connection error:', err))
 
 const itemSchema = new mongoose.Schema({ name: String })
 const Item = mongoose.model('Item', itemSchema)
